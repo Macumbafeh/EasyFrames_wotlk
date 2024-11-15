@@ -2,7 +2,7 @@
 
 Make your unit frames colored and glorious.
 
-i juste fixed :
+i just fixed :
 - Class Portrait for Party Members
 - Fixed the Party HealthBar and ManaBar text which wasn't at the good place
 
