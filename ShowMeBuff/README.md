@@ -1,5 +1,6 @@
 # ShowMeBuff
 [NEW] Shows buffs and debuffs on party frames, with timer spiral
+Fixed to match with EasyFrames party frames
 
 ![Imgur](https://i.imgur.com/InFIQFT.jpg)
 
