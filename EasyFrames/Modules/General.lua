@@ -67,7 +67,7 @@ local function ClassColored(statusbar, unit)
         return
     end
 
-    if (UnitIsPlayer(unit) and UnitClass(unit) and UnitExists(unit) and not UnitIsDead(unit) and not UnitIsDeadOrGhost(unit) and not UnitIsGhost(unit) and UnitIsConnected(unit) and UnitIsFriend("player", unit)) then
+    if (UnitIsPlayer(unit) and UnitClass(unit) and UnitExists(unit) and not UnitIsDead(unit) and not UnitIsDeadOrGhost(unit) and not UnitIsGhost(unit) and UnitIsConnected(unit)) then
            
         -- player
         if (db.general.classColored) then
