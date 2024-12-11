@@ -9,6 +9,7 @@ i just fixed :
 ![image](https://github.com/user-attachments/assets/02b2f689-5924-4622-9844-11e919763990)
 
 
+#ShowMeBuff
 There is also a fixed version of ShowMeBuff addon which show buff of party members. i just moved the buff to match with EasyFrames' party frames.
 
 Before
@@ -18,3 +19,5 @@ Before
 After
 
 ![image](https://github.com/user-attachments/assets/69407b12-cc55-4cfe-9298-81a5d5b660e4)
+
+To see numbers on party buffs/debuffs with ShowMeBuff, use OmniCC and set Minimum font size to display text to 2
