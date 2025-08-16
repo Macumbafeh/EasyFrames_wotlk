@@ -272,6 +272,12 @@ local generalOptions = {
                         setOpt(info, value)
                         EasyFrames:GetModule("General"):SetBrightFramesBorder(value)
                     end,
+					disabled = function()
+                       local diabled = EasyFrames.db.profile.general.lightTexture
+                       if (diabled == false) then
+							return true
+                       end
+                    end,
                     isPercent = true,
                     arg = "general"
                 },
