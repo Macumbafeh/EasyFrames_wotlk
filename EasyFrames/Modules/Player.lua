@@ -46,6 +46,7 @@ function Player:OnInitialize()
 
 end
 
+
 function Player:OnEnable()
     self:SetScale(db.player.scaleFrame)
     self:ShowName(db.player.showName)
@@ -66,6 +67,7 @@ function Player:OnEnable()
     --self:SecureHook("TextStatusBar_UpdateTextStringWithValues", "UpdateTextStringWithValues")
     self:SecureHook("TextStatusBar_UpdateTextString", "UpdateTextStringWithValues")
     self:SecureHook("UnitFramePortrait_Update", "MakeClassPortraits")
+	
 end
 
 function Player:OnProfileChanged(newDB)
@@ -122,11 +124,31 @@ function Player:ShowName(value)
     end
 
     self:ShowNameInsideFrame(db.player.showNameInsideFrame)
+	
+	local Core = EasyFrames:GetModule("Core")
+	
+	local HealthBarTexts = {
+        PlayerFrameHealthBar.RightText,
+        PlayerFrameHealthBar.LeftText,
+        PlayerFrameHealthBar.TextString
+    }
+
+    for _, healthBar in pairs(HealthBarTexts) do
+        local point, relativeTo, relativePoint, xOffset, yOffset = healthBar:GetPoint()
+
+        if (value and db.player.showName) then
+            Core:MovePlayerFrameName(nil, nil, nil, nil, 20)
+            Core:MoveRegion(healthBar, point, relativeTo, relativePoint, xOffset, yOffset + 9)
+        end
+    end
 end
 
 function Player:ShowNameInsideFrame(value)
     local Core = EasyFrames:GetModule("Core")
-
+	
+	local healthBar = PlayerFrameHealthBar
+    if not healthBar then return end
+	
     local HealthBarTexts = {
         PlayerFrameHealthBar.RightText,
         PlayerFrameHealthBar.LeftText,

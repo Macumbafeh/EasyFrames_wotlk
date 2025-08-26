@@ -111,6 +111,26 @@ function Boss:ShowName(value)
     end)
 
     self:ShowNameInsideFrame(db.boss.showNameInsideFrame)
+	
+	local Core = EasyFrames:GetModule("Core")
+
+    BossIterator(function(frame)
+        local HealthBarTexts = {
+            frame.healthbar.RightText,
+            frame.healthbar.LeftText,
+            frame.healthbar.TextString,
+        }
+
+        for _, healthBar in pairs(HealthBarTexts) do
+            local namePoint, nameRelativeTo, nameRelativePoint, nameXOffset, nameYOffset = frame.name:GetPoint()
+            local healthBarPoint, healthBarRelativeTo, healthBarRelativePoint, healthBarXOffset, healthBarYOffset = healthBar:GetPoint()
+
+            if (value and db.boss.showName) then
+                Core:MoveRegion(frame.name, namePoint, nameRelativeTo, nameRelativePoint, nameXOffset, 20)
+                Core:MoveRegion(healthBar, healthBarPoint, healthBarRelativeTo, healthBarRelativePoint, healthBarXOffset, healthBarYOffset + 9)
+            end
+        end
+    end)
 end
 
 function Boss:ShowNameInsideFrame(value)

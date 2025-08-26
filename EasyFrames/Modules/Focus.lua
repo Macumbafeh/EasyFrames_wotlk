@@ -139,6 +139,25 @@ function Focus:ShowName(value)
     end
 
     self:ShowNameInsideFrame(db.focus.showNameInsideFrame)
+	
+	local Core = EasyFrames:GetModule("Core")
+
+    local HealthBarTexts = {
+        FocusFrameHealthBar.RightText,
+        FocusFrameHealthBar.LeftText,
+        FocusFrameHealthBar.TextString,
+        FocusFrameTextureFrameDeadText
+    }
+
+    for _, healthBar in pairs(HealthBarTexts) do
+        local point, relativeTo, relativePoint, xOffset, yOffset = healthBar:GetPoint()
+
+        if (value and db.focus.showName) then
+            Core:MoveFocusFrameName(nil, nil, nil, nil, 20)
+
+            Core:MoveRegion(healthBar, point, relativeTo, relativePoint, xOffset, yOffset + 8)
+        end
+    end
 end
 
 function Focus:ShowNameInsideFrame(value)
