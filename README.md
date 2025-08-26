@@ -11,14 +11,13 @@ i just fixed :
 
 
 #ShowMeBuff
-There is also a fixed version of ShowMeBuff addon which show buff of party members. i just moved the buff to match with EasyFrames' party frames.
+You can find it here : https://github.com/wotlk-addons/ShowMeBuff
 
-Before
+It has an option now to match EasyFrames' Party Frames.
+when disabled
+<img width="1249" height="687" alt="image" src="https://github.com/user-attachments/assets/73687646-96a7-4b82-be35-e60ad24f88c1" />
 
-![image](https://github.com/user-attachments/assets/8ae13236-79b2-46fa-9c7b-5000d5f35aa8)
-
-After
-
-![image](https://github.com/user-attachments/assets/69407b12-cc55-4cfe-9298-81a5d5b660e4)
+When enabled
+<img width="1251" height="653" alt="image" src="https://github.com/user-attachments/assets/5e714ed2-3e68-40cb-86db-27e194c8a578" />
 
 To see numbers on party buffs/debuffs with ShowMeBuff, use OmniCC and set Minimum font size to display text to 2
