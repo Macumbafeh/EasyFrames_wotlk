@@ -153,6 +153,7 @@ function Focus:ShowName(value)
         local point, relativeTo, relativePoint, xOffset, yOffset = healthBar:GetPoint()
 
         if (value and db.focus.showName) then
+		 if not db.player.showNameInsideFrame then return end
             Core:MoveFocusFrameName(nil, nil, nil, nil, 20)
 
             Core:MoveRegion(healthBar, point, relativeTo, relativePoint, xOffset, yOffset + 8)

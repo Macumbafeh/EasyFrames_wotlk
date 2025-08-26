@@ -126,6 +126,7 @@ function Boss:ShowName(value)
             local healthBarPoint, healthBarRelativeTo, healthBarRelativePoint, healthBarXOffset, healthBarYOffset = healthBar:GetPoint()
 
             if (value and db.boss.showName) then
+			 if not db.player.showNameInsideFrame then return end
                 Core:MoveRegion(frame.name, namePoint, nameRelativeTo, nameRelativePoint, nameXOffset, 20)
                 Core:MoveRegion(healthBar, healthBarPoint, healthBarRelativeTo, healthBarRelativePoint, healthBarXOffset, healthBarYOffset + 9)
             end
