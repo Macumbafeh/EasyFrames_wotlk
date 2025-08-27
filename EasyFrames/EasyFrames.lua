@@ -494,69 +494,58 @@ function EasyFrames.Utils.UpdateManaValues(frame, manaFormat, customManaFormat, 
     local unit = frame.unit
     local manabar = frame
 
-    local ManaPercent = 0
+    local power = UnitPower(unit)
+    local powerMax = UnitPowerMax(unit)
+    local powerPercent = powerMax > 0 and (power / powerMax * 100) or 0
 
-    if (UnitPowerMax(unit) > 0) then
-        ManaPercent = (UnitPower(unit) / UnitPowerMax(unit)) * 100
+    -- Handle empty bar
+    if (powerMax == 0) then
+        manabar.TextString:SetText(" ")
+        return
     end
 
     if (manaFormat == "1") then
         -- Percent
-        if (UnitPower(unit) > 0) then
-            manabar.TextString:SetText(format("%.0f", ManaPercent) .. "%")
-        end
+        manabar.TextString:SetText(format("%.0f%%", powerPercent))
 
     elseif (manaFormat == "2") then
-        -- Smart
-        if (UnitPowerType(unit) == 0) then
-            --mana
-            manabar.TextString:SetText(string.format("%.0f%%", ManaPercent))
-        elseif (UnitPowerType(unit) == 1 or UnitPowerType(unit) == 2 or UnitPowerType(unit) == 3 or UnitPowerType(unit) == 6) then
-            --manabar.TextString:SetText(AbbreviateLargeNumbers(UnitPower(unit)))
-            manabar.TextString:SetText(UnitPower(unit))
-        end
+		-- Current + Max
+		if (power > 0) then
+			local current = ReadableNumber(power)
+			local max = ReadableNumber(powerMax)
+			manabar.TextString:SetText(current .. " / " .. max)
+		end
 
-        if (UnitPowerMax(unit) == 0) then
-            manabar.TextString:SetText(" ")
-        end
+	elseif (manaFormat == "3") then
+		-- Current + Max + Percent
+		if (power > 0) then
+			local current = ReadableNumber(power)
+			local max = ReadableNumber(powerMax)
+			manabar.TextString:SetText(current .. " / " .. max .. " (" .. format("%.0f%%", powerPercent) .. ")")
+		end
 
+	elseif (manaFormat == "4") then
+		-- Current + Percent
+		if (power > 0) then
+			local current = ReadableNumber(power)
+			manabar.TextString:SetText(current .. " (" .. format("%.0f%%", powerPercent) .. ")")
+		end
     elseif (manaFormat == "custom") then
-        -- Own format
+        -- Custom format
+        local current = useChineseNumeralsManaFormat and CustomChineseReadableNumber(power, customManaFormatFormulas)
+                      or CustomReadableNumber(power, customManaFormatFormulas, useManaFormatFullValues and 1 or nil)
+        local max = useChineseNumeralsManaFormat and CustomChineseReadableNumber(powerMax, customManaFormatFormulas)
+                   or CustomReadableNumber(powerMax, customManaFormatFormulas, useManaFormatFullValues and 1 or nil)
+        local percent = format("%.0f", powerPercent)
 
-        if (UnitPower(unit) > 0) then
-            local Mana = UnitPower(unit)
-            local ManaMax = UnitPowerMax(unit)
-
-            local useFullValues = false
-            if (useManaFormatFullValues) then
-                useFullValues = 1
-            end
-
-            if not useChineseNumeralsManaFormat then
-                Mana = CustomReadableNumber(Mana, customManaFormatFormulas, useFullValues)
-                ManaMax = CustomReadableNumber(ManaMax, customManaFormatFormulas, useFullValues)
-            else
-                Mana = CustomChineseReadableNumber(Mana, customManaFormatFormulas)
-                ManaMax = CustomChineseReadableNumber(ManaMax, customManaFormatFormulas)
-            end
-
-            local Result = string.gsub(
-                string.gsub(
-                    string.gsub(
-                        customManaFormat,
-                        "%%PERCENT%%",
-                        string.format("%.0f", ManaPercent)
-                    ),
-                    "%%MAX%%",
-                    ManaMax
-                ),
-                "%%CURRENT%%",
-                Mana
-            )
-
-            manabar.TextString:SetText(Result);
-        end
-
+        local result = string.gsub(
+            string.gsub(
+                string.gsub(customManaFormat, "%%PERCENT%%", percent),
+                "%%MAX%%", max
+            ),
+            "%%CURRENT%%", current
+        )
+        manabar.TextString:SetText(result)
     end
 end
 

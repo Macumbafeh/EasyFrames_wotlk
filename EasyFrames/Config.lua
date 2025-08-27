@@ -75,7 +75,9 @@ local healthFormat = {
 
 local manaFormat = {
     ["1"] = L["Percent"], --1
-    ["2"] = L["Smart"], --2
+    ["2"] = L["Current + Max"], --2
+    ["3"] = L["Current + Max + Percent"], --3
+    ["4"] = L["Current + Percent"], --4
     ["custom"] = L["Custom format"], --custom
 }
 
