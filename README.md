@@ -6,6 +6,7 @@ i just fixed :
 - Class Portrait for Party Members
 - Fixed the Party HealthBar and ManaBar text which wasn't at the good place
 - Fixed an error from libs with the sliders. and bring back the light textures option
+- updated the manabar text option to be like the healthbar text 
 
 ![image](https://github.com/user-attachments/assets/02b2f689-5924-4622-9844-11e919763990)
 
