@@ -124,24 +124,6 @@ function Player:ShowName(value)
     end
 
     self:ShowNameInsideFrame(db.player.showNameInsideFrame)
-	
-	local Core = EasyFrames:GetModule("Core")
-	
-	local HealthBarTexts = {
-        PlayerFrameHealthBar.RightText,
-        PlayerFrameHealthBar.LeftText,
-        PlayerFrameHealthBar.TextString
-    }
-
-    for _, healthBar in pairs(HealthBarTexts) do
-        local point, relativeTo, relativePoint, xOffset, yOffset = healthBar:GetPoint()
-
-        if (value and db.player.showName) then
-		 if not db.player.showNameInsideFrame then return end
-            Core:MovePlayerFrameName(nil, nil, nil, nil, 20)
-            Core:MoveRegion(healthBar, point, relativeTo, relativePoint, xOffset, yOffset + 9)
-        end
-    end
 end
 
 function Player:ShowNameInsideFrame(value)
@@ -162,7 +144,7 @@ function Player:ShowNameInsideFrame(value)
         if (value and db.player.showName) then
             Core:MovePlayerFrameName(nil, nil, nil, nil, 20)
 
-            Core:MoveRegion(healthBar, point, relativeTo, relativePoint, xOffset, yOffset - 4)
+            Core:MoveRegion(healthBar, point, relativeTo, relativePoint, xOffset, 7)
         else
             Core:MovePlayerFrameName()
 

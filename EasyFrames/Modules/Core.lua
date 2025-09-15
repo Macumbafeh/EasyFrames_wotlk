@@ -192,7 +192,7 @@ function Core:MoveTargetFrameBars()
     TargetFrameNumericalThreat:SetScale(0.9)
 
     self:MoveRegion(TargetFrameHealthBar, "CENTER", TargetFrame, "CENTER", -50, 14)
-    self:MoveRegion(TargetFrameTextureFrameDeadText, "CENTER", TargetFrame, "CENTER", -50, 12)
+    self:MoveRegion(TargetFrameTextureFrameDeadText, "CENTER", TargetFrame, "CENTER", -50,3)
     self:MoveRegion(TargetFrameManaBar, "CENTER", TargetFrame, "CENTER", -51, -7)
     self:MoveRegion(TargetFrameNumericalThreat, "CENTER", TargetFrame, "CENTER", 44, 48)
 end
